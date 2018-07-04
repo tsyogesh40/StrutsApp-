@@ -3,11 +3,11 @@ package com.login;
 
 public class dbconnect {
 
-	 static protected String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-	 static protected String DB_URL = "jdbc:mysql://localhost:8889/myserver";
+	 static public String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
+	 static public String DB_URL = "jdbc:mysql://localhost:8889/myserver";
 
 	  //  Database credentials
-	   static String USER = "root";
-	   static String PASS = "root";
+	   static public String USER = "root";
+	   static public String PASS = "root";
 	   
 }

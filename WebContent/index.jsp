@@ -7,15 +7,16 @@
 <html>
 <head>
 <title>Login Page</title>
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
 </head>
 
 <body>
 
-<div class="container-fluid">
+<div class="container-fluid" id="top">
   <div class="jumbotron text-center">
     <h1>Struts2 App</h1> 
     
@@ -32,10 +33,10 @@
                     type: "POST",
                     url: "./login.action",
                     data: "username="+name+"&password="+pwd,
-                
                     success: function(response){
                         // we have the respons
                          $('#loginbox').hide(); 
+                        $('#top').hide();
                         $('#info').html(response);
                        
                     },
@@ -46,7 +47,7 @@
             }
         </script>
 
- 		                                         &nbsp;&nbsp;&nbsp;&nbsp;   <div id="info" style="color: red;"></div>
+ 		                                         <div id="info" ></div>
 
  <div class="container">    
         <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    

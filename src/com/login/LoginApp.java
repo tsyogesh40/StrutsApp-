@@ -77,8 +77,7 @@ public class LoginApp extends ActionSupport implements ServletRequestAware, Serv
 		if(name.equals(getUsername())&&pwd.equals(getPassword()))
 	     {
 	    	 System.out.println("login success");
-	    	response.sendRedirect("./home.jsp ");
-	    	// return "success";
+	    	return "success";
 	     }
 		return "failure";
 

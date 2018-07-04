@@ -2,76 +2,46 @@
 package com.login;
 import java.sql.*;
 
+import javax.servlet.http.HttpServletResponse;
+import com.action.Action;
 
-public class Signup{
+public class Signup extends Action {
 	private String name;
 	private String email;
 	private String password;
+	private String date;
+	//@SuppressWarnings("unused")
+	private String msg;
 	
-	/* static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-	   static final String DB_URL = "jdbc:mysql://localhost:8889/myserver";
+    HttpServletResponse response;
 
-	  //  Database credentials
-	   static final String USER = "root";
-	   static final String PASS = "root";*/
-	
-	   
-	   
-	public String execute()
+	public String execute() throws Exception
 	{
-		Connection conn = null;
-		   Statement stmt = null;
-		   int flag = 0;
-		   try{
-		      //STEP 2: Register JDBC driver
-		      Class.forName(dbconnect.JDBC_DRIVER);
-		      
-			  System.out.println( "Submitted Value :"+ name +" "+email +" "+password );
 
-		      //STEP 3: Open a connection
-		      System.out.println("Connecting to database...");
-		      conn = DriverManager.getConnection(dbconnect.DB_URL,dbconnect.USER,dbconnect.PASS);
-
-		      //STEP 4: Execute a query
-		      System.out.println("Creating statement...");
-		      stmt = conn.createStatement();
-		      String sql;
-		      System.out.println("Inserting records into the table...");
-		      
-		      PreparedStatement ps = conn.prepareStatement("INSERT INTO login(name,email,password) VALUES(?,?,?)");
-		      	ps.setString(1,getName());
-				ps.setString(2,getEmail());
-				ps.setString(3, getPassword());
-				flag = ps.executeUpdate();
-				System.out.println(flag);
-				if(flag>0)
-					System.out.println("Inserted Successfully");
-						      
-		      sql = "SELECT * FROM login";
-		      ResultSet rs = stmt.executeQuery(sql);
-		  
-		      
-		      System.out.println("Updated List...");
-		   //STEP 5: Extract data from result set
-		      while(rs.next()){
-		        String name= rs.getString("name");
-		         String email = rs.getString("email");
-		         String password = rs.getString("password");
+		Action obj=new Action();
+		try{
+		setMsg(obj.adduser(getName(), getEmail(), getPassword()));
+		ResultSet rs = Action.viewall();
+	      System.out.println("Updated List...");
+	      
+		      while(rs.next())
+		      {
+		        String nm= rs.getString("name");
+		         String em = rs.getString("email");
+		         String pwd = rs.getString("password");
 		         
-
 		         //Display values
-		         System.out.print("Name: " + name +"\t");
-		         System.out.print(" Email: " + email +"\t");
-		         System.out.println(" Password: " + password +"\t");
+		         System.out.print("Name: " + nm +"\t");
+		         System.out.print(" Email: " + em +"\t");
+		         System.out.println(" Password: " + pwd +"\t");
 		      }
-		      
-		   }
-		  catch(Exception e)
-		   {
-			System.out.print("caught exception"+ e);  
-		   }
-		   
-		return "added";
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return "added";	 
+	        
 	}
 
 
@@ -103,4 +73,27 @@ public class Signup{
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+
+	public String getDate() {
+		return date;
+	}
+
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+
+	public String getMsg() {
+		return msg;
+	}
+
+
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
+
+
+	
 }

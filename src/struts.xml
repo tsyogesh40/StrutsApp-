@@ -7,9 +7,12 @@
     <!-- Configuration for the default package. -->
    
     <package name="login" extends="struts-default">
+    <result-types>
+			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
         <action name="login" class="com.login.LoginApp">
-            <result name = "success">home.jsp</result>
-            <result name="failure">invalid.jsp</result>
+            <result name = "success" type="tiles">baselayout</result>
+           <result name="failure">invalid.jsp</result>
             <result name="input">index.jsp</result>
         </action>
     </package>
@@ -21,14 +24,58 @@
     	<action name="sample*">
     		<result>home.jsp</result>
     	</action>
-    	
     </package>
     
+    
+    
     <package name="signup" extends="struts-default">
+    <result-types>
+			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
     <action name="signup" class="com.login.Signup">
-    	<result name="added">Signup.jsp</result>
+    	<result name="added" type="tiles">adduser</result>
     </action>
     </package>
+    
+    
+    <package name="new" extends="json-default">
+    <action name="register" class="com.action.Viewuser">
+			<result name="added" type="json">
+			<!--  <param name="root">list</param>  -->
+			</result>
+    </action>
+    </package>
+    
+    
+    
+    <package name="views" extends="struts-default">
+     <result-types>
+			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
+    <action name="report" class="com.action.Viewuser">
+    	<result name="report" type="tiles">viewuser</result>
+    </action>
+
+    </package>
+    
+    <package name="adduser" extends="struts-default">
+     <result-types>
+			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
+    	<action name="adduser">
+    		<result  type="tiles">adduser</result>
+    	</action>
+    	
+    	<action name="viewuser">
+    	<result type="tiles">viewuser</result>
+    	</action>
+    	
+    	<action name="views">
+    		<result>/users/sample.jsp</result>
+    	</action>
+    </package>
+    
+    
     
     
      
